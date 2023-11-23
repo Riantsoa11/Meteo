@@ -107,19 +107,15 @@ namespace Meteo
                     //Temperature
                     Main main = root.main;
                     TB_Temperature.Text = main.temp.ToString() + "°C";
-                    return main.temp.ToString();
 
                     //Cloudy
                     TB_Cloudy.Text = root.clouds.ToString();
-                    return main.temp_max.ToString();
                     
                     //Temperature max
                     TB_Max.Text = main.temp_max.ToString();
-                    return main.temp_max.ToString();
                     
                     //Temperature min
                     TB_min.Text = main.temp_min.ToString();
-                    return main.temp_min.ToString();
 
                     //Temperature Moyen
                     TB_Moyen.Text = main.feels_like.ToString();
