@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-D:\Tsiory\Riantsoa11\Meteo\Meteo\Meteo\obj\Debug\
+D:\Tsiory\Riantsoa11\Meteo\Meteo\Meteo\obj\Release\
 Meteo
 none
 false
-DEBUG;TRACE
+TRACE
 D:\Tsiory\Riantsoa11\Meteo\Meteo\Meteo\App.xaml
 1219584333
 
@@ -16,5 +16,5 @@ D:\Tsiory\Riantsoa11\Meteo\Meteo\Meteo\App.xaml
 14-259956865
 MainWindow.xaml;
 
-False
+True
 

@@ -106,19 +106,22 @@ namespace Meteo
                     Root root = JsonConvert.DeserializeObject<Root>(content);
                     //Temperature
                     Main main = root.main;
-                    TB_Temperature.Text = main.temp.ToString() + "°C";
+                    TB_Temperature.Text = "Today  "+main.temp.ToString() + "°C F";
 
                     //Cloudy
-                    TB_Cloudy.Text = root.clouds.ToString();
-                    
+                    TB_Cloudy.Text = "Partially Cloudy:  " + root.weather[0].description.ToString();
+
+                    //Precipitation
+                    TB_Precipitation.Text = "Precipitation:  " + main.humidity.ToString() +" %";
+
                     //Temperature max
-                    TB_Max.Text = main.temp_max.ToString();
+                    TB_Max.Text = "High : " + main.temp_max.ToString()+"°";
                     
                     //Temperature min
-                    TB_min.Text = main.temp_min.ToString();
+                    TB_min.Text = "Low : " + main.temp_min.ToString() + "°";
 
                     //Temperature Moyen
-                    TB_Moyen.Text = main.feels_like.ToString();
+                    TB_Moyen.Text = "Feels like : " + main.feels_like.ToString() + "°";
                     return main.feels_like.ToString();
                 }
                 else
