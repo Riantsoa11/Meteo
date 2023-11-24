@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Meteo",
+    "\\Meteo\\Meteo"
   ],
-  "SelectedNode": "\\Meteo.sln",
+  "SelectedNode": "\\Meteo\\Meteo\\MainWindow.xaml.cs",
   "PreviewInSolutionExplorer": false
 }
