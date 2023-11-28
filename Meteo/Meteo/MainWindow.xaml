@@ -7,28 +7,31 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="502*"/>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="61*"/>
-            <ColumnDefinition Width="212*"/>
-        </Grid.ColumnDefinitions>
+    <Grid Background="#8ecae6">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Name="En_tete" Grid.ColumnSpan="4">
+        <Grid Grid.Row="0" Name="En_tete" Background="Azure">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="40,0,0,0" VerticalAlignment="Center">
+                <TextBlock  Grid.Row="0" Text="Ville" Width="247" Foreground="Black" FontSize="25" TextAlignment="Center" Name="Ville"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="40,0,0,0" VerticalAlignment="Center">
+                <ListBox Grid.Column="1" Height="30"  Width="206" d:ItemsSource="{d:SampleData ItemCount=5}" Name="Ajouter"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Margin="40,0,0,0" VerticalAlignment="Center">
+                <ListBox Grid.Column="1" Height="30"  Width="206" d:ItemsSource="{d:SampleData ItemCount=5}" Name="Supprimer"/>
+            </StackPanel>   
         </Grid>
 
-        <Grid Grid.Row="1" Name="Corps" Grid.ColumnSpan="4">
+        <Grid Grid.Row="1" Name="Corps">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition   Width="*"/>
                 <ColumnDefinition   Width="*"/>
@@ -51,6 +54,12 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0"  VerticalAlignment="Center">
+                            <TextBlock Name="TB_Temperature" Foreground="White" FontSize="25" TextAlignment="Center" Text="Today  19° F"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                            <TextBlock Name="TB_min_Max" Foreground="White" FontSize="25" TextAlignment="Center" Text="16° - 23° F"/>
+                        </StackPanel>
                     </Grid>
 
                     <Grid Grid.Column="1">
@@ -58,6 +67,12 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0"  VerticalAlignment="Center">
+                            <TextBlock Name="TB_Ville" Foreground="White" FontSize="25" TextAlignment="Center" Text="Annecy"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                            <TextBlock Name="TB_Cloudy" Foreground="White" FontSize="25" TextAlignment="Center" Text="Partially Cloudy"/>
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </Grid>
@@ -73,11 +88,20 @@
                         <RowDefinition Height="60"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Margin="40,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Name="TB_Date" Foreground="White" FontSize="25" TextAlignment="Center" Text="21/11/2023"/>
+                    </StackPanel>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Name="TB_Precipitation" Foreground="White" FontSize="25" TextAlignment="Center" Text="Humidite: 25%"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Name="TB_Vent" Foreground="White" FontSize="25" TextAlignment="Center" Text="Vent: 5 km/h"/>
+                        </StackPanel>
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1" Name="droite_bas">
@@ -95,7 +119,7 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="1" Name="Pieds_de_page" Grid.ColumnSpan="4" Margin="0,254,0,0" Grid.RowSpan="2">
+        <Grid Grid.Row="2" Name="Pieds_de_page" Background="#023047">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition   Width="*"/>
                 <ColumnDefinition   Width="*"/>
