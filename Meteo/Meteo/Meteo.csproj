@@ -98,7 +98,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Ressources\Images\image.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Ressources\Images\partially-cloudy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
