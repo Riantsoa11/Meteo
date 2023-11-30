@@ -783,6 +783,8 @@ namespace Meteo
 
     public class Root
     {
+        internal object tmp;
+
         public CityInfo city_info { get; set; }
         public ForecastInfo forecast_info { get; set; }
         public CurrentCondition current_condition { get; set; }
@@ -798,8 +800,43 @@ namespace Meteo
         public MainWindow()
         {
             InitializeComponent();
+            _: GetWeather();
         }
+        public async Task<string> GetWeather()
+        {
+            HttpClient client = new HttpClient();
+            try
+            {
+                HttpResponseMessage responce = await client.GetAsync("https://www.prevision-meteo.ch/services/json/Annecy");
+                if (responce.IsSuccessStatusCode)
+                {
+                    var content = await responce.Content.ReadAsStringAsync();
+                    Root root = JsonConvert.DeserializeObject<Root>(content);
+                    //Ville
+                    CityInfo cityInfo = root.city_info;
+                    TB_Ville.Text =  cityInfo.name.ToString();
 
+                    //Temperature
+                    CurrentCondition currentCondition = root.current_condition;
+                    TB_Temperature.Text = "Today:  " + currentCondition.tmp.ToString()+"°";
+
+                    TB_min_Max.Text=
+                    return currentCondition.tmp.ToString();
+                  
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return "";
+            }
+
+
+        }
     }
-   
+
 }
