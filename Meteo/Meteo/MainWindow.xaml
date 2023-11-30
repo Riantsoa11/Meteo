@@ -24,11 +24,11 @@
                 <TextBlock  Grid.Row="0" Text="Météo" Width="247" Foreground="White" FontSize="25" TextAlignment="Center" Name="Meteo"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Margin="40,0,0,0" VerticalAlignment="Center">
-                <ComboBox Name="numeroComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" SelectedIndex="0" 
+                <ComboBox Name="numeroComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"  
                   SelectionChanged="maComboBox_SelectionChanged"/>
             </StackPanel>
             <StackPanel Grid.Column="2" Margin="40,0,0,0" VerticalAlignment="Center">
-                <ComboBox Name="villeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" SelectedIndex="0" 
+                <ComboBox Name="villeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" 
                   SelectionChanged="maComboBox_SelectionChanged"/>
             </StackPanel>
         </Grid>
