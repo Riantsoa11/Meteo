@@ -817,6 +817,10 @@ namespace Meteo
             villeComboBox.Items.Add("Grenoble");
             villeComboBox.Items.Add("Chambery");
             villeComboBox.Items.Add("Nantes");
+            villeComboBox.Items.Add("Paris");
+            villeComboBox.Items.Add("Limoges");
+            villeComboBox.Items.Add("Toulouse");
+            villeComboBox.Items.Add("Nice");
 
         _: GetWeather("Annecy");
         }
