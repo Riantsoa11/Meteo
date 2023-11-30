@@ -815,12 +815,39 @@ namespace Meteo
                     //Ville
                     CityInfo cityInfo = root.city_info;
                     TB_Ville.Text =  cityInfo.name.ToString();
-
-                    //Temperature
+                    
                     CurrentCondition currentCondition = root.current_condition;
-                    TB_Temperature.Text = "Today:  " + currentCondition.tmp.ToString()+"°";
+                    //Temperature
+                    TB_Temperature.Text = currentCondition.tmp.ToString()+" °";
+                    TB_Cloudy.Text = currentCondition.condition.ToString();
+                    TB_Vent.Text = currentCondition.pressure.ToString()+" hpa";
+                    //Humidite
+                    TB_Humidite.Text = "Humidite :" + currentCondition.humidity.ToString() + " %";
+                    //Temperature mini et maw
+                    FcstDay0 fcstDay0 = root.fcst_day_0;
+                    TB_min_Max.Text = fcstDay0.tmin.ToString()+"°  - "+ fcstDay0.tmax.ToString()+"° F";
+                    TB_Date.Text = fcstDay0.date.ToString();
 
-                    TB_min_Max.Text=
+                    //Date 1
+                    FcstDay1 fcstDay1 = root.fcst_day_1;
+                    TB_Jour1.Text = fcstDay1.date.ToString();
+                    T_Temp1.Text = fcstDay1.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
+
+                    FcstDay2 fcstDay2 = root.fcst_day_2;
+                    TB_Jour2.Text = fcstDay2.date.ToString();
+                    T_Temp2.Text = fcstDay2.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
+
+
+                    FcstDay3 fcstDay3 = root.fcst_day_3;
+                    TB_Jour3.Text = fcstDay3.date.ToString();
+                    T_Temp3.Text = fcstDay3.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
+
+
+                    FcstDay4 fcstDay4 = root.fcst_day_4;
+                    TB_Jour4.Text = fcstDay4.date.ToString();
+                    T_Temp4.Text = fcstDay4.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
+
+
                     return currentCondition.tmp.ToString();
                   
                 }

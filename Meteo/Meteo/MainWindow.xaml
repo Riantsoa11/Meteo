@@ -43,7 +43,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Image Margin="4" Source="Ressources/Images/image.png"/>
+                    <Image Margin="4" Source="Ressources/Images/partially-cloudy.png"/>
                 </Grid>
                 <Grid Grid.Row="1" Name="gauche_bas">
                     <Grid.ColumnDefinitions>
@@ -57,7 +57,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0"  VerticalAlignment="Center">
-                            <TextBlock Name="TB_Ville" Foreground="White" FontSize="25" TextAlignment="Center" Text="Annecy"/>
+                            <TextBlock Name="TB_Ville" Foreground="White" FontSize="25" TextAlignment="Center" Text="Tana"/>
                         </StackPanel>
                         <StackPanel Grid.Row="1" VerticalAlignment="Center">
                             <TextBlock Name="TB_min_Max" Foreground="White" FontSize="25" TextAlignment="Center" Text="16° - 23° F"/>
@@ -101,7 +101,7 @@
                         </Grid.ColumnDefinitions>
                         
                         <StackPanel Grid.Column="0" VerticalAlignment="Center" Name="Humidite">
-                            <TextBlock Name="TB_Precipitation" Foreground="White" FontSize="23" TextAlignment="Center" Text="Humidite: 25%"/>
+                            <TextBlock Name="TB_Humidite" Foreground="White" FontSize="23" TextAlignment="Center" Text="Humidite: 25%"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
@@ -126,7 +126,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0" >
                                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                        <TextBlock Name="Jour1" Foreground="White" FontSize="23" TextAlignment="Center" Text="Lundi"/>
+                                        <TextBlock Name="TB_Jour1" Foreground="White" FontSize="23" TextAlignment="Center" Text="Lundi"/>
                                     </StackPanel>
                                 </Grid>
                                 <Grid Grid.Row="1">
@@ -142,7 +142,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Name="Jour2" Foreground="White" FontSize="23" TextAlignment="Center" Text="Mardi"/>
+                                        <TextBlock Name="TB_Jour2" Foreground="White" FontSize="23" TextAlignment="Center" Text="Mardi"/>
                                     </StackPanel>
                                 </Grid>
                                 <Grid Grid.Row="1">
@@ -164,7 +164,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
                                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                        <TextBlock Name="Jour3" Foreground="White" FontSize="23" TextAlignment="Center" Text="Mercredi"/>
+                                        <TextBlock Name="TB_Jour3" Foreground="White" FontSize="23" TextAlignment="Center" Text="Mercredi"/>
                                     </StackPanel>
                                 </Grid>
                                 <Grid Grid.Row="1">
@@ -180,7 +180,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
                                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                        <TextBlock Name="Jour4" Foreground="White" FontSize="23" TextAlignment="Center" Text="Jeudi"/>
+                                        <TextBlock Name="TB_Jour4" Foreground="White" FontSize="23" TextAlignment="Center" Text="Jeudi"/>
                                     </StackPanel>
                                 </Grid>
                                 <Grid Grid.Row="1">
