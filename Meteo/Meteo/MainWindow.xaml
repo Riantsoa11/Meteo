@@ -24,11 +24,13 @@
                 <TextBlock  Grid.Row="0" Text="Météo" Width="247" Foreground="White" FontSize="25" TextAlignment="Center" Name="Meteo"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Margin="40,0,0,0" VerticalAlignment="Center">
-                <ListBox Grid.Column="1" Height="30"  Width="206" d:ItemsSource="{d:SampleData ItemCount=5}" Name="Ajouter" Background="#FFD4E8EB"/>
+                <ComboBox Name="numeroComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" SelectedIndex="0" 
+                  SelectionChanged="maComboBox_SelectionChanged"/>
             </StackPanel>
             <StackPanel Grid.Column="2" Margin="40,0,0,0" VerticalAlignment="Center">
-                <ListBox Grid.Column="1" Height="30"  Width="206" d:ItemsSource="{d:SampleData ItemCount=5}" Name="Supprimer" Background="#FFD6E3EB"/>
-            </StackPanel>   
+                <ComboBox Name="villeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" SelectedIndex="0" 
+                  SelectionChanged="maComboBox_SelectionChanged"/>
+            </StackPanel>
         </Grid>
 
         <Grid Grid.Row="1" Name="Corps">
@@ -43,7 +45,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Image Margin="4" Source="Ressources/Images/partially-cloudy.png"/>
+                    <Image Name="imagePrinc" Margin="4" Source="Ressources/Images/partially-cloudy.png"/>
                 </Grid>
                 <Grid Grid.Row="1" Name="gauche_bas">
                     <Grid.ColumnDefinitions>
@@ -57,7 +59,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0"  VerticalAlignment="Center">
-                            <TextBlock Name="TB_Ville" Foreground="White" FontSize="25" TextAlignment="Center" Text="Madagascar"/>
+                            <TextBlock Name="TB_Ville" Foreground="White" FontSize="25" TextAlignment="Center" Text="Tana"/>
                         </StackPanel>
                         <StackPanel Grid.Row="1" VerticalAlignment="Center">
                             <TextBlock Name="TB_min_Max" Foreground="White" FontSize="25" TextAlignment="Center" Text="16° - 23° F"/>
@@ -91,15 +93,15 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" VerticalAlignment="Center" Name="Date">
-                            <TextBlock Name="TB_Date" Foreground="White" FontSize="25" TextAlignment="Center" Text="21/11/2023"/>
-                        </StackPanel>
+                        <TextBlock Name="TB_Date" Foreground="White" FontSize="25" TextAlignment="Center" Text="21/11/2023"/>
+                    </StackPanel>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        
+
                         <StackPanel Grid.Column="0" VerticalAlignment="Center" Name="Humidite">
                             <TextBlock Name="TB_Humidite" Foreground="White" FontSize="23" TextAlignment="Center" Text="Humidite: 25%"/>
                         </StackPanel>
@@ -114,81 +116,81 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" >
-                                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                        <TextBlock Name="TB_Jour1" Foreground="White" FontSize="23" TextAlignment="Center" Text="Lundi"/>
-                                    </StackPanel>
-                                </Grid>
-                                <Grid Grid.Row="1">
-                                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                       <TextBlock Name="T_Temp1" Foreground="White" FontSize="23" TextAlignment="Center" Text="12° - 19°"/>
-                                    </StackPanel>
-                                </Grid>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" >
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <TextBlock Name="TB_Jour1" Foreground="White" FontSize="23" TextAlignment="Center" Text="Lundi"/>
+                                </StackPanel>
                             </Grid>
-                            <Grid Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0">
-                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Name="TB_Jour2" Foreground="White" FontSize="23" TextAlignment="Center" Text="Mardi"/>
-                                    </StackPanel>
-                                </Grid>
-                                <Grid Grid.Row="1">
-                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Name="T_Temp2" Foreground="White" FontSize="23" TextAlignment="Center" Text="10° - 17°"/>
-                                    </StackPanel>
-                                </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <TextBlock Name="T_Temp1" Foreground="White" FontSize="23" TextAlignment="Center" Text="12° - 19°"/>
+                                </StackPanel>
                             </Grid>
                         </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Name="TB_Jour2" Foreground="White" FontSize="23" TextAlignment="Center" Text="Mardi"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Name="T_Temp2" Foreground="White" FontSize="23" TextAlignment="Center" Text="10° - 17°"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0">
-                                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                        <TextBlock Name="TB_Jour3" Foreground="White" FontSize="23" TextAlignment="Center" Text="Mercredi"/>
-                                    </StackPanel>
-                                </Grid>
-                                <Grid Grid.Row="1">
-                                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                        <TextBlock Name="T_Temp3" Foreground="White" FontSize="23" TextAlignment="Center" Text="14° - 18°"/>
-                                    </StackPanel>
-                                </Grid>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <TextBlock Name="TB_Jour3" Foreground="White" FontSize="23" TextAlignment="Center" Text="Mercredi"/>
+                                </StackPanel>
                             </Grid>
-                            <Grid Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0">
-                                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                        <TextBlock Name="TB_Jour4" Foreground="White" FontSize="23" TextAlignment="Center" Text="Jeudi"/>
-                                    </StackPanel>
-                                </Grid>
-                                <Grid Grid.Row="1">
-                                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                        <TextBlock Name="T_Temp4" Foreground="White" FontSize="23" TextAlignment="Center" Text="13° - 16°"/>
-                                    </StackPanel>
-                                </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <TextBlock Name="T_Temp3" Foreground="White" FontSize="23" TextAlignment="Center" Text="14° - 18°"/>
+                                </StackPanel>
                             </Grid>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <TextBlock Name="TB_Jour4" Foreground="White" FontSize="23" TextAlignment="Center" Text="Jeudi"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <TextBlock Name="T_Temp4" Foreground="White" FontSize="23" TextAlignment="Center" Text="13° - 16°"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
@@ -213,10 +215,9 @@
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Name="TB_Ville1" Foreground="White" FontSize="25" TextAlignment="Center" Text="Londre"/>
                     </StackPanel>
-
                 </Grid>
                 <Grid Grid.Row="1">
-
+                    <Image Name="monImage1" Width="100" Height="60" />
                 </Grid>
                 <Grid Grid.Row="2">
                     <StackPanel VerticalAlignment="Center">
@@ -245,7 +246,7 @@
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Row="1">
-
+                    <Image Name="monImage2" Width="100" Height="60" />
                 </Grid>
                 <Grid Grid.Row="2">
                     <StackPanel VerticalAlignment="Center">
@@ -272,7 +273,7 @@
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Row="1">
-
+                    <Image Name="monImage3" Width="100" Height="60" />
                 </Grid>
                 <Grid Grid.Row="2">
                     <StackPanel VerticalAlignment="Center">
@@ -299,7 +300,7 @@
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Row="1">
-
+                    <Image Name="monImage4" Width="100" Height="60" />
                 </Grid>
                 <Grid Grid.Row="2">
                     <StackPanel  VerticalAlignment="Center">

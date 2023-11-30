@@ -794,38 +794,59 @@ namespace Meteo
         public FcstDay3 fcst_day_3 { get; set; }
         public FcstDay4 fcst_day_4 { get; set; }
     }
-
+    public class VilleInfo
+    {
+        public string name { get; set; }
+        public string temp { get; set; }
+        public string min_max { get; set; }
+        public string icon { get; set; }
+    }
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
-            _: GetWeather();
+
+            numeroComboBox.Items.Add("1");
+            numeroComboBox.Items.Add("2");
+            numeroComboBox.Items.Add("3");
+            numeroComboBox.Items.Add("4");
+
+            villeComboBox.Items.Add("Lyon");
+            villeComboBox.Items.Add("Grenoble");
+            villeComboBox.Items.Add("Chambery");
+            villeComboBox.Items.Add("Nantes");
+
+        _: GetWeather("Annecy");
         }
-        public async Task<string> GetWeather()
+
+        public async Task<string> GetWeather(string ville)
         {
             HttpClient client = new HttpClient();
             try
             {
-                HttpResponseMessage responce = await client.GetAsync("https://www.prevision-meteo.ch/services/json/Annecy");
+                HttpResponseMessage responce = await client.GetAsync("https://www.prevision-meteo.ch/services/json/" + ville);
                 if (responce.IsSuccessStatusCode)
                 {
                     var content = await responce.Content.ReadAsStringAsync();
                     Root root = JsonConvert.DeserializeObject<Root>(content);
+
                     //Ville
                     CityInfo cityInfo = root.city_info;
-                    TB_Ville.Text =  cityInfo.name.ToString();
-                    
+                    TB_Ville.Text = cityInfo.name.ToString();
+
                     CurrentCondition currentCondition = root.current_condition;
                     //Temperature
-                    TB_Temperature.Text = currentCondition.tmp.ToString()+" °";
+                    TB_Temperature.Text = currentCondition.tmp.ToString() + " °";
                     TB_Cloudy.Text = currentCondition.condition.ToString();
-                    TB_Vent.Text = currentCondition.pressure.ToString()+" hpa";
+                    if (currentCondition.icon != null) imagePrinc.Source = new BitmapImage(new Uri(currentCondition.icon.ToString(), UriKind.Absolute));
+                    TB_Vent.Text = currentCondition.pressure.ToString() + " hpa";
                     //Humidite
                     TB_Humidite.Text = "Humidite :" + currentCondition.humidity.ToString() + " %";
                     //Temperature mini et maw
                     FcstDay0 fcstDay0 = root.fcst_day_0;
-                    TB_min_Max.Text = fcstDay0.tmin.ToString()+"°  - "+ fcstDay0.tmax.ToString()+"° F";
+                    TB_min_Max.Text = fcstDay0.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
                     TB_Date.Text = fcstDay0.date.ToString();
 
                     //Date 1
@@ -849,7 +870,7 @@ namespace Meteo
 
 
                     return currentCondition.tmp.ToString();
-                  
+
                 }
                 else
                 {
@@ -864,6 +885,94 @@ namespace Meteo
 
 
         }
+
+
+        private async void maComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Faites quelque chose lorsque la sélection change
+            //MessageBox.Show("Élément sélectionné : " + maComboBox.SelectedItem);
+            string numero = numeroComboBox.SelectedItem?.ToString();
+            string ville = villeComboBox.SelectedItem?.ToString();
+
+            VilleInfo villeInfo = new VilleInfo();
+            villeInfo = await GetWeatherByVille(ville);
+
+            switch (numero)
+            {
+                case "1":
+                    TB_Ville1.Text = villeInfo.name;
+                    T_Temp_Ville1.Text = villeInfo.temp;
+                    T_Temp_min_max_ville1.Text = villeInfo.min_max;
+
+                    if (villeInfo.icon != null) monImage1.Source = new BitmapImage(new Uri(villeInfo.icon, UriKind.Absolute));
+                    break;
+                case "2":
+                    TB_Ville2.Text = villeInfo.name;
+                    T_Temp_Ville2.Text = villeInfo.temp;
+                    T_Temp_min_max_ville2.Text = villeInfo.min_max;
+                    if (villeInfo.icon != null) monImage2.Source = new BitmapImage(new Uri(villeInfo.icon, UriKind.Absolute));
+
+                    break;
+                case "3":
+                    TB_Ville3.Text = villeInfo.name;
+                    T_Temp_Ville3.Text = villeInfo.temp;
+                    T_Temp_min_max_ville3.Text = villeInfo.min_max;
+                    if (villeInfo.icon != null) monImage3.Source = new BitmapImage(new Uri(villeInfo.icon, UriKind.Absolute));
+
+                    break;
+                case "4":
+                    TB_Ville4.Text = villeInfo.name;
+                    T_Temp_Ville4.Text = villeInfo.temp;
+                    T_Temp_min_max_ville4.Text = villeInfo.min_max;
+                    if (villeInfo.icon != null) monImage4.Source = new BitmapImage(new Uri(villeInfo.icon, UriKind.Absolute));
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public async Task<VilleInfo> GetWeatherByVille(string ville)
+        {
+            HttpClient client = new HttpClient();
+            VilleInfo villeInfo = new VilleInfo();
+
+            try
+            {
+                if (ville != null)
+                {
+                    HttpResponseMessage responce = await client.GetAsync("https://www.prevision-meteo.ch/services/json/" + ville);
+                    if (responce.IsSuccessStatusCode)
+                    {
+                        var content = await responce.Content.ReadAsStringAsync();
+                        Root root = JsonConvert.DeserializeObject<Root>(content);
+
+                        //Ville
+                        CityInfo cityInfo = root.city_info;
+                        villeInfo.name = cityInfo.name.ToString();
+
+                        CurrentCondition currentCondition = root.current_condition;
+                        //Temperature
+                        villeInfo.temp = currentCondition.tmp.ToString() + " °";
+                        villeInfo.icon = currentCondition.icon.ToString();
+
+                        //Temperature mini et maw
+                        FcstDay0 fcstDay0 = root.fcst_day_0;
+                        villeInfo.min_max = fcstDay0.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+
+            return villeInfo;
+        }
+
+
+
     }
 
 }
