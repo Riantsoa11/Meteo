@@ -57,7 +57,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0"  VerticalAlignment="Center">
-                            <TextBlock Name="TB_Ville" Foreground="White" FontSize="25" TextAlignment="Center" Text="Tana"/>
+                            <TextBlock Name="TB_Ville" Foreground="White" FontSize="25" TextAlignment="Center" Text="Madagascar"/>
                         </StackPanel>
                         <StackPanel Grid.Row="1" VerticalAlignment="Center">
                             <TextBlock Name="TB_min_Max" Foreground="White" FontSize="25" TextAlignment="Center" Text="16° - 23° F"/>
