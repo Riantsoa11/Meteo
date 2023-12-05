@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Meteo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="600" Width="800">
 
     <Grid Background="#8ecae6">
         <Grid.RowDefinitions>
@@ -17,20 +17,31 @@
         <Grid Grid.Row="0" Name="En_tete" Background="#0077b6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Margin="40,0,0,0" VerticalAlignment="Center">
-                <TextBlock  Grid.Row="0" Text="Météo" Width="247" Foreground="White" FontSize="25" TextAlignment="Center" Name="Meteo"/>
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock Text="Météo" Foreground="White" FontSize="25" TextAlignment="Center" Name="Meteo"/>
             </StackPanel>
-            <StackPanel Grid.Column="1" Margin="40,0,0,0" VerticalAlignment="Center">
-                <ComboBox Name="numeroComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"  
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <ComboBox Name="numeroComboBox" HorizontalAlignment="Right"   Width="40"
                   SelectionChanged="maComboBox_SelectionChanged"/>
             </StackPanel>
-            <StackPanel Grid.Column="2" Margin="40,0,0,0" VerticalAlignment="Center">
-                <ComboBox Name="villeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" 
-                  SelectionChanged="maComboBox_SelectionChanged"/>
+            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                <ComboBox Name="villeComboBox" HorizontalAlignment="Right"  Width="125" 
+                  SelectionChanged="maComboBox_SelectionChanged" Text="Choisiser ville"/>
             </StackPanel>
+            <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                <TextBox Grid.Column="3" HorizontalAlignment="Center" Height="21" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="140"/>
+            </StackPanel>
+            <StackPanel Grid.Column="4" VerticalAlignment="Center">
+                <Button Content="Ajouter" Height="30" Width="88"/>
+                <Button Content="Supprimer" Height="30" Width="88"/>
+            </StackPanel>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="5,0,0,0" TextWrapping="Wrap" Text="Colonne" VerticalAlignment="Center" Width="54"/>
+
         </Grid>
 
         <Grid Grid.Row="1" Name="Corps">
@@ -43,11 +54,20 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Image Name="imagePrinc" Margin="4" Source="Ressources/Images/partially-cloudy.png"/>
                 </Grid>
-                <Grid Grid.Row="1" Name="gauche_bas">
+
+                <Grid Grid.Row="1">
+                    <StackPanel Grid.Row="0" VerticalAlignment="Center" Name="Date">
+                        <TextBlock Name="TB_Date" Foreground="White" FontSize="25" TextAlignment="Center" Text="21/11/2023"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="2" Name="gauche_bas">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition   Width="*"/>
                         <ColumnDefinition   Width="*"/>
@@ -79,38 +99,35 @@
                         </StackPanel>
                     </Grid>
                 </Grid>
-            </Grid>
 
-            <Grid Grid.Column="1" Name="droite">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="0" Name="droite_haut">
+                <Grid Grid.Row="3">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="70"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" VerticalAlignment="Center" Name="Date">
-                        <TextBlock Name="TB_Date" Foreground="White" FontSize="25" TextAlignment="Center" Text="21/11/2023"/>
-                    </StackPanel>
 
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0">
 
-                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Name="Humidite">
-                            <TextBlock Name="TB_Humidite" Foreground="White" FontSize="23" TextAlignment="Center" Text="Humidite: 25%"/>
-                        </StackPanel>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Name="TB_Vent" Foreground="White" FontSize="23" TextAlignment="Center" Text="Vent: 5 km/h"/>
-                        </StackPanel>
+                            <StackPanel Grid.Column="0" VerticalAlignment="Center" Name="Humidite">
+                                <TextBlock Name="TB_Humidite" Foreground="White" FontSize="23" TextAlignment="Center" Text="Humidite: 25%"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock Name="TB_Vent" Foreground="White" FontSize="23" TextAlignment="Center" Text="Vent: 5 km/h"/>
+                            </StackPanel>
+                        </Grid>
                     </Grid>
                 </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1" Name="droit">
+
                 <Grid Grid.Row="1" Name="droite_bas">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -121,8 +138,9 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
+                        <Grid Grid.Column="0" Background="#caf0f8">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
@@ -132,13 +150,18 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="1">
+                                <Image Name="JOUR1" Margin="4" Source="Ressources/Images/partially-cloudy.png"/>
+                            </Grid>
+
+                            <Grid Grid.Row="2">
                                 <StackPanel Grid.Column="0" VerticalAlignment="Center">
                                     <TextBlock Name="T_Temp1" Foreground="White" FontSize="23" TextAlignment="Center" Text="12° - 19°"/>
                                 </StackPanel>
                             </Grid>
                         </Grid>
-                        <Grid Grid.Column="1">
+                        <Grid Grid.Column="1" Background="#ade8f4">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
@@ -148,6 +171,9 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="1">
+                                <Image Name="JOUR2" Margin="4" Source="Ressources/Images/partially-cloudy.png"/>
+                            </Grid>
+                            <Grid Grid.Row="2">
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                     <TextBlock Name="T_Temp2" Foreground="White" FontSize="23" TextAlignment="Center" Text="10° - 17°"/>
                                 </StackPanel>
@@ -159,8 +185,9 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
+                        <Grid Grid.Column="0" Background="#90e0ef">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
@@ -170,13 +197,17 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="1">
+                                <Image Name="JOUR3" Margin="4" Source="Ressources/Images/partially-cloudy.png"/>
+                            </Grid>
+                            <Grid Grid.Row="2">
                                 <StackPanel Grid.Column="0" VerticalAlignment="Center">
                                     <TextBlock Name="T_Temp3" Foreground="White" FontSize="23" TextAlignment="Center" Text="14° - 18°"/>
                                 </StackPanel>
                             </Grid>
                         </Grid>
-                        <Grid Grid.Column="1">
+                        <Grid Grid.Column="1" Background="#48cae4">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
@@ -186,6 +217,9 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="1">
+                                <Image Name="JOUR4" Margin="4" Source="Ressources/Images/partially-cloudy.png"/>
+                            </Grid>
+                            <Grid Grid.Row="2">
                                 <StackPanel Grid.Column="0" VerticalAlignment="Center">
                                     <TextBlock Name="T_Temp4" Foreground="White" FontSize="23" TextAlignment="Center" Text="13° - 16°"/>
                                 </StackPanel>
@@ -314,5 +348,6 @@
                 </Grid>
             </Grid>
         </Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="-275,122,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
     </Grid>
 </Window>

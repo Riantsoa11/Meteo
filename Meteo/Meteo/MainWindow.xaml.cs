@@ -794,6 +794,7 @@ namespace Meteo
         public FcstDay3 fcst_day_3 { get; set; }
         public FcstDay4 fcst_day_4 { get; set; }
     }
+    //classe qui prend tout les valeur de la ville 
     public class VilleInfo
     {
         public string name { get; set; }
@@ -808,11 +809,13 @@ namespace Meteo
         {
             InitializeComponent();
 
+            //numore dans la combobox
             numeroComboBox.Items.Add("1");
             numeroComboBox.Items.Add("2");
             numeroComboBox.Items.Add("3");
             numeroComboBox.Items.Add("4");
 
+            //liste des villes
             villeComboBox.Items.Add("Lyon");
             villeComboBox.Items.Add("Grenoble");
             villeComboBox.Items.Add("Chambery");
@@ -821,57 +824,57 @@ namespace Meteo
             villeComboBox.Items.Add("Limoges");
             villeComboBox.Items.Add("Toulouse");
             villeComboBox.Items.Add("Nice");
-
+            
+            //prend Annecy comme ville par Défaut 
         _: GetWeather("Annecy");
         }
 
+        //prend en compte la valeur de la ville actuel
         public async Task<string> GetWeather(string ville)
         {
+            //requete pour renvoyer le http
             HttpClient client = new HttpClient();
             try
             {
+                //HttpResponseMessage va prendre les information de la lien
                 HttpResponseMessage responce = await client.GetAsync("https://www.prevision-meteo.ch/services/json/" + ville);
                 if (responce.IsSuccessStatusCode)
                 {
                     var content = await responce.Content.ReadAsStringAsync();
                     Root root = JsonConvert.DeserializeObject<Root>(content);
 
-                    //Ville
+                    //Class CityInfo
                     CityInfo cityInfo = root.city_info;
                     TB_Ville.Text = cityInfo.name.ToString();
 
+                    //Class CurrentCondition
                     CurrentCondition currentCondition = root.current_condition;
-                    //Temperature
-                    TB_Temperature.Text = currentCondition.tmp.ToString() + " °";
-                    TB_Cloudy.Text = currentCondition.condition.ToString();
-                    if (currentCondition.icon != null) imagePrinc.Source = new BitmapImage(new Uri(currentCondition.icon.ToString(), UriKind.Absolute));
-                    TB_Vent.Text = currentCondition.pressure.ToString() + " hpa";
-                    //Humidite
-                    TB_Humidite.Text = "Humidite :" + currentCondition.humidity.ToString() + " %";
-                    //Temperature mini et maw
-                    FcstDay0 fcstDay0 = root.fcst_day_0;
-                    TB_min_Max.Text = fcstDay0.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
-                    TB_Date.Text = fcstDay0.date.ToString();
-
-                    //Date 1
+                    TB_Temperature.Text = currentCondition.tmp.ToString() + " °";//Temperature actuelle
+                    TB_Cloudy.Text = currentCondition.condition.ToString();//Temp actuelle
+                    if (currentCondition.icon != null) imagePrinc.Source = new BitmapImage(new Uri(currentCondition.icon.ToString(), UriKind.Absolute));//Affichage image
+                    TB_Vent.Text = currentCondition.pressure.ToString() + " hpa";//Pression du vent
+                    TB_Humidite.Text = "Humidite :" + currentCondition.humidity.ToString() + " %";//Humidité
+                    
+                    //class  FcstDay
+                    FcstDay0 fcstDay0 = root.fcst_day_0; 
+                    TB_min_Max.Text = fcstDay0.tmin.ToString() + "°    " + fcstDay0.tmax.ToString() + "° F";//Temperatue min et max
+                    TB_Date.Text = fcstDay0.date.ToString();//Affiche le date
                     FcstDay1 fcstDay1 = root.fcst_day_1;
-                    TB_Jour1.Text = fcstDay1.date.ToString();
-                    T_Temp1.Text = fcstDay1.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
-
+                    TB_Jour1.Text = fcstDay1.date.ToString();//Date du jour 1
+                    if (currentCondition.icon != null) JOUR1.Source = new BitmapImage(new Uri(currentCondition.icon.ToString(), UriKind.Absolute));//Affichage image
+                    T_Temp1.Text = fcstDay1.tmin.ToString() + "°    " + fcstDay1.tmax.ToString() + "° F";//temperature min et max du jour 1
                     FcstDay2 fcstDay2 = root.fcst_day_2;
-                    TB_Jour2.Text = fcstDay2.date.ToString();
-                    T_Temp2.Text = fcstDay2.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
-
-
+                    if (currentCondition.icon != null) JOUR2.Source = new BitmapImage(new Uri(currentCondition.icon.ToString(), UriKind.Absolute));//Affichage image
+                    TB_Jour2.Text = fcstDay2.date.ToString();//date du jour 2
+                    T_Temp2.Text = fcstDay2.tmin.ToString() + "°    " + fcstDay2.tmax.ToString() + "° F";//temperature min et max du jour 2
                     FcstDay3 fcstDay3 = root.fcst_day_3;
-                    TB_Jour3.Text = fcstDay3.date.ToString();
-                    T_Temp3.Text = fcstDay3.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
-
-
+                    if (currentCondition.icon != null) JOUR3.Source = new BitmapImage(new Uri(currentCondition.icon.ToString(), UriKind.Absolute));//Affichage image
+                    TB_Jour3.Text = fcstDay3.date.ToString();//date du jour 3
+                    T_Temp3.Text = fcstDay3.tmin.ToString() + "°    " + fcstDay3.tmax.ToString() + "° F";//temperature min et max du jour 3
                     FcstDay4 fcstDay4 = root.fcst_day_4;
-                    TB_Jour4.Text = fcstDay4.date.ToString();
-                    T_Temp4.Text = fcstDay4.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
-
+                    if (currentCondition.icon != null) JOUR4.Source = new BitmapImage(new Uri(currentCondition.icon.ToString(), UriKind.Absolute));//Affichage image
+                    TB_Jour4.Text = fcstDay4.date.ToString();//date du jour 4
+                    T_Temp4.Text = fcstDay4.tmin.ToString() + "°    " + fcstDay4.tmax.ToString() + "° F";//temperature min et max du jour 4
 
                     return currentCondition.tmp.ToString();
 
@@ -890,11 +893,11 @@ namespace Meteo
 
         }
 
-
+        // Faites quelque chose lorsque la sélection change
         private async void maComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Faites quelque chose lorsque la sélection change
-            //MessageBox.Show("Élément sélectionné : " + maComboBox.SelectedItem);
+        {    
+
+            //type du combobox
             string numero = numeroComboBox.SelectedItem?.ToString();
             string ville = villeComboBox.SelectedItem?.ToString();
 
@@ -903,6 +906,7 @@ namespace Meteo
 
             switch (numero)
             {
+                //etat de la combobox
                 case "1":
                     TB_Ville1.Text = villeInfo.name;
                     T_Temp_Ville1.Text = villeInfo.temp;
@@ -935,7 +939,7 @@ namespace Meteo
                     break;
             }
         }
-
+        //prend en compte la valeur pour chaque ville
         public async Task<VilleInfo> GetWeatherByVille(string ville)
         {
             HttpClient client = new HttpClient();
@@ -951,18 +955,18 @@ namespace Meteo
                         var content = await responce.Content.ReadAsStringAsync();
                         Root root = JsonConvert.DeserializeObject<Root>(content);
 
-                        //Ville
+                        //classe CityInfo
                         CityInfo cityInfo = root.city_info;
                         villeInfo.name = cityInfo.name.ToString();
 
+                        //classe CurrentCondition
                         CurrentCondition currentCondition = root.current_condition;
-                        //Temperature
-                        villeInfo.temp = currentCondition.tmp.ToString() + " °";
-                        villeInfo.icon = currentCondition.icon.ToString();
+                        villeInfo.temp = currentCondition.tmp.ToString() + " °";//temps actuelle de la ville choisi
+                        villeInfo.icon = currentCondition.icon.ToString();//image meteo de la ville choisir 
 
-                        //Temperature mini et maw
+                        //Class FcstDay
                         FcstDay0 fcstDay0 = root.fcst_day_0;
-                        villeInfo.min_max = fcstDay0.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";
+                        villeInfo.min_max = fcstDay0.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";//Temperature min et max 
 
                     }
                 }
