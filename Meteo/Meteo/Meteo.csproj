@@ -111,5 +111,8 @@
   <ItemGroup>
     <Folder Include="Service\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressources\Fichiers\listeActuelle.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

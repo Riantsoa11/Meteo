@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 //Api
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.IO;
+using System.Diagnostics;
 
 namespace Meteo
 {
@@ -804,6 +806,7 @@ namespace Meteo
     }
     public partial class MainWindow : Window
     {
+        string cheminFichier = "D:\\Tsiory\\Riantsoa11\\Meteo\\Meteo\\Meteo\\Ressources\\Fichiers\\listeActuelle.txt";
 
         public MainWindow()
         {
@@ -816,20 +819,13 @@ namespace Meteo
             numeroComboBox.Items.Add("3");
             numeroComboBox.Items.Add("4");
 
-            //liste des villes
-
-            villeComboBox.Items.Add("Grenoble");
-            villeComboBox.Items.Add("Chambery");
-            villeComboBox.Items.Add("Nantes");
-            villeComboBox.Items.Add("Limoges");
-            
-
+            RecupererVille();
 
             //prend Annecy comme ville par Défaut 
         _: GetWeather("Annecy");
         }
 
-
+         
 
         //prend en compte la valeur de la ville actuel
         public async Task<string> GetWeather(string ville)
@@ -991,30 +987,33 @@ namespace Meteo
                 "Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Strasbourg",
                 "Montpellier", "Bordeaux", "Lille", "Rennes", "Reims", "Le Havre", "Saint-Étienne",
                 "Toulon", "Grenoble", "Dijon", "Angers", "Nîmes", "Villeurbanne", "Le Mans",
-                "Aix-en-Provence", "Clermont-Ferrand", "Brest", "Limoges", "Tours", "Amiens", "Perpignan","Annecy"
+                "Aix-en-Provence", "Clermont-Ferrand", "Brest", "Limoges", "Tours", "Amiens", "Perpignan","Annecy","Chambery"
             };
+
+            
 
             // Vérifiez si l'élément n'existe pas déjà dans la liste du ComboBox
             if (!villeComboBox.Items.Contains(villeAAjouter))
             {
                 // Vérifiez si la ville à ajouter est une ville française autorisée
-                if (villesAutorisees.Contains(villeAAjouter))
+                if (char.IsUpper(villeAAjouter[0])) 
                 {
                     // Vérifiez si le nom de la ville commence par une majuscule
-                    if (char.IsUpper(villeAAjouter[0]))
+                    if (villesAutorisees.Contains(villeAAjouter))
                     {
+                        AjouterVille(villeAAjouter);
                         // Ajoutez l'élément à la liste
                         villeComboBox.Items.Add(villeAAjouter);
                         MessageBox.Show("Ville ajoutée avec succès.");
                     }
                     else
                     {
-                        MessageBox.Show("Le nom de la ville doit commencer par une majuscule.");
+                        MessageBox.Show("Seules les villes de France sont autorisées.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Seules les villes de France sont autorisées.");
+                    MessageBox.Show("Le nom de la ville doit commencer par une majuscule.");
                 }
             }
             else
@@ -1027,9 +1026,12 @@ namespace Meteo
         {
             string elementASupprimer = textbox.Text;
 
+
             // Vérifiez si l'élément existe dans la liste du ComboBox
             if (villeComboBox.Items.Contains(elementASupprimer))
             {
+                SupprimerVille(elementASupprimer);
+
                 // Supprimez l'élément
                 villeComboBox.Items.Remove(elementASupprimer);
                 MessageBox.Show("Élément supprimé avec succès.");
@@ -1038,6 +1040,73 @@ namespace Meteo
             {
                 MessageBox.Show("L'élément n'existe pas dans la liste.");
             }
+        }
+
+        private void SupprimerVille(string villeAsupprimer)
+        {
+
+            try
+            {
+                string contenu = File.ReadAllText(cheminFichier);
+                List<string> villesListe = contenu.Split(',').ToList();
+
+                villesListe.Remove(villeAsupprimer);
+
+                string nouveauContenu = string.Join(",", villesListe);
+
+                File.WriteAllText(cheminFichier, nouveauContenu);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
+            }
+        }
+
+        private void RecupererVille()
+        {
+
+
+            try
+            {
+                string contenu = File.ReadAllText(cheminFichier);
+
+                string[] villesArray = contenu.Split(',');
+
+                List<string> villesListe = new List<string>(villesArray);
+
+                foreach (string ville in villesListe)
+                {
+                    villeComboBox.Items.Add(ville);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
+            }
+        }
+       
+            private void AjouterVille(string nouvelleVille)
+        {
+
+            try
+            {
+                string contenu = File.ReadAllText(cheminFichier);
+
+                List<string> villesListe = contenu.Split(',').ToList();
+
+                villesListe.Add(nouvelleVille);
+
+                string nouveauContenu = string.Join(",", villesListe);
+
+                File.WriteAllText(cheminFichier, nouveauContenu);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
+            }
+
         }
     }
 
