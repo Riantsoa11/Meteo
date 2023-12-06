@@ -34,13 +34,14 @@
                   SelectionChanged="maComboBox_SelectionChanged" Text="Choisiser ville"/>
             </StackPanel>
             <StackPanel Grid.Column="3" VerticalAlignment="Center">
-                <TextBox Grid.Column="3" HorizontalAlignment="Center" Height="21" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="140"/>
+                <TextBox Grid.Column="3" HorizontalAlignment="Center" Height="21" Name="textbox" Text="" VerticalAlignment="Center" Width="140"/>
             </StackPanel>
             <StackPanel Grid.Column="4" VerticalAlignment="Center">
-                <Button Content="Ajouter" Height="30" Width="88"/>
-                <Button Content="Supprimer" Height="30" Width="88"/>
+
             </StackPanel>
             <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="5,0,0,0" TextWrapping="Wrap" Text="Colonne" VerticalAlignment="Center" Width="54"/>
+            <Button Grid.Column="4" Content="Ajouter" HorizontalAlignment="Center" Height="30" Margin="0,0,0,47" VerticalAlignment="Bottom" Width="95" Click="Button_Ajouter"/>
+            <Button Grid.Column="4" Content="Supprimer" HorizontalAlignment="Center" Height="30" Margin="0,40,0,0" VerticalAlignment="Top" Width="95" Click="Button_Supprimer"/>
 
         </Grid>
 

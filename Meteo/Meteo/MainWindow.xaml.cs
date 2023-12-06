@@ -810,24 +810,26 @@ namespace Meteo
             InitializeComponent();
 
             //numore dans la combobox
+
             numeroComboBox.Items.Add("1");
             numeroComboBox.Items.Add("2");
             numeroComboBox.Items.Add("3");
             numeroComboBox.Items.Add("4");
 
             //liste des villes
-            villeComboBox.Items.Add("Lyon");
+
             villeComboBox.Items.Add("Grenoble");
             villeComboBox.Items.Add("Chambery");
             villeComboBox.Items.Add("Nantes");
-            villeComboBox.Items.Add("Paris");
             villeComboBox.Items.Add("Limoges");
-            villeComboBox.Items.Add("Toulouse");
-            villeComboBox.Items.Add("Nice");
             
+
+
             //prend Annecy comme ville par Défaut 
         _: GetWeather("Annecy");
         }
+
+
 
         //prend en compte la valeur de la ville actuel
         public async Task<string> GetWeather(string ville)
@@ -979,8 +981,64 @@ namespace Meteo
             return villeInfo;
         }
 
+        private void Button_Ajouter(object sender, RoutedEventArgs e)
+        {
+            string villeAAjouter = textbox.Text;
 
+            // Liste des villes françaises autorisées
+            List<string> villesAutorisees = new List<string>
+            {
+                "Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Strasbourg",
+                "Montpellier", "Bordeaux", "Lille", "Rennes", "Reims", "Le Havre", "Saint-Étienne",
+                "Toulon", "Grenoble", "Dijon", "Angers", "Nîmes", "Villeurbanne", "Le Mans",
+                "Aix-en-Provence", "Clermont-Ferrand", "Brest", "Limoges", "Tours", "Amiens", "Perpignan","Annecy"
+            };
 
+            // Vérifiez si l'élément n'existe pas déjà dans la liste du ComboBox
+            if (!villeComboBox.Items.Contains(villeAAjouter))
+            {
+                // Vérifiez si la ville à ajouter est une ville française autorisée
+                if (villesAutorisees.Contains(villeAAjouter))
+                {
+                    // Vérifiez si le nom de la ville commence par une majuscule
+                    if (char.IsUpper(villeAAjouter[0]))
+                    {
+                        // Ajoutez l'élément à la liste
+                        villeComboBox.Items.Add(villeAAjouter);
+                        MessageBox.Show("Ville ajoutée avec succès.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Le nom de la ville doit commencer par une majuscule.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seules les villes de France sont autorisées.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("La ville existe déjà dans la liste.");
+            }
+        }
+
+        private void Button_Supprimer(object sender, RoutedEventArgs e)
+        {
+            string elementASupprimer = textbox.Text;
+
+            // Vérifiez si l'élément existe dans la liste du ComboBox
+            if (villeComboBox.Items.Contains(elementASupprimer))
+            {
+                // Supprimez l'élément
+                villeComboBox.Items.Remove(elementASupprimer);
+                MessageBox.Show("Élément supprimé avec succès.");
+            }
+            else
+            {
+                MessageBox.Show("L'élément n'existe pas dans la liste.");
+            }
+        }
     }
 
 }
