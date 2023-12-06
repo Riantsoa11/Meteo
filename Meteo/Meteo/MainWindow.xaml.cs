@@ -1021,7 +1021,7 @@ namespace Meteo
                 MessageBox.Show("La ville existe déjà dans la liste.");
             }
         }
-
+        //boutton supprimer
         private void Button_Supprimer(object sender, RoutedEventArgs e)
         {
             string elementASupprimer = textbox.Text;
