@@ -39,7 +39,7 @@
             <StackPanel Grid.Column="4" VerticalAlignment="Center">
 
             </StackPanel>
-            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="5,0,0,0" TextWrapping="Wrap" Text="Colonne" VerticalAlignment="Center" Width="54"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="5,0,0,0" TextWrapping="Wrap" Text="Colonne" VerticalAlignment="Center" Foreground="White" Width="54"/>
             <Button Grid.Column="4" Content="Ajouter" HorizontalAlignment="Center" Height="30" Margin="0,0,0,47" VerticalAlignment="Bottom" Width="95" Click="Button_Ajouter"/>
             <Button Grid.Column="4" Content="Supprimer" HorizontalAlignment="Center" Height="30" Margin="0,40,0,0" VerticalAlignment="Top" Width="95" Click="Button_Supprimer"/>
 

@@ -855,24 +855,24 @@ namespace Meteo
                     
                     //class  FcstDay
                     FcstDay0 fcstDay0 = root.fcst_day_0; 
-                    TB_min_Max.Text = fcstDay0.tmin.ToString() + "°    " + fcstDay0.tmax.ToString() + "° F";//Temperatue min et max
+                    TB_min_Max.Text = fcstDay0.tmin.ToString() + "°   à   " + fcstDay0.tmax.ToString() + "° F";//Temperatue min et max
                     TB_Date.Text = fcstDay0.date.ToString();//Affiche le date
                     FcstDay1 fcstDay1 = root.fcst_day_1;
                     TB_Jour1.Text = fcstDay1.date.ToString();//Date du jour 1
                     if (currentCondition.icon != null) JOUR1.Source = new BitmapImage(new Uri(currentCondition.icon.ToString(), UriKind.Absolute));//Affichage image
-                    T_Temp1.Text = fcstDay1.tmin.ToString() + "°    " + fcstDay1.tmax.ToString() + "° F";//temperature min et max du jour 1
+                    T_Temp1.Text = fcstDay1.tmin.ToString() + "°   à   " + fcstDay1.tmax.ToString() + "° F";//temperature min et max du jour 1
                     FcstDay2 fcstDay2 = root.fcst_day_2;
                     if (currentCondition.icon != null) JOUR2.Source = new BitmapImage(new Uri(currentCondition.icon.ToString(), UriKind.Absolute));//Affichage image
                     TB_Jour2.Text = fcstDay2.date.ToString();//date du jour 2
-                    T_Temp2.Text = fcstDay2.tmin.ToString() + "°    " + fcstDay2.tmax.ToString() + "° F";//temperature min et max du jour 2
+                    T_Temp2.Text = fcstDay2.tmin.ToString() + "°   à   " + fcstDay2.tmax.ToString() + "° F";//temperature min et max du jour 2
                     FcstDay3 fcstDay3 = root.fcst_day_3;
                     if (currentCondition.icon != null) JOUR3.Source = new BitmapImage(new Uri(currentCondition.icon.ToString(), UriKind.Absolute));//Affichage image
                     TB_Jour3.Text = fcstDay3.date.ToString();//date du jour 3
-                    T_Temp3.Text = fcstDay3.tmin.ToString() + "°    " + fcstDay3.tmax.ToString() + "° F";//temperature min et max du jour 3
+                    T_Temp3.Text = fcstDay3.tmin.ToString() + "°   à   " + fcstDay3.tmax.ToString() + "° F";//temperature min et max du jour 3
                     FcstDay4 fcstDay4 = root.fcst_day_4;
                     if (currentCondition.icon != null) JOUR4.Source = new BitmapImage(new Uri(currentCondition.icon.ToString(), UriKind.Absolute));//Affichage image
                     TB_Jour4.Text = fcstDay4.date.ToString();//date du jour 4
-                    T_Temp4.Text = fcstDay4.tmin.ToString() + "°    " + fcstDay4.tmax.ToString() + "° F";//temperature min et max du jour 4
+                    T_Temp4.Text = fcstDay4.tmin.ToString() + "°   à   " + fcstDay4.tmax.ToString() + "° F";//temperature min et max du jour 4
 
                     return currentCondition.tmp.ToString();
 
@@ -964,7 +964,7 @@ namespace Meteo
 
                         //Class FcstDay
                         FcstDay0 fcstDay0 = root.fcst_day_0;
-                        villeInfo.min_max = fcstDay0.tmin.ToString() + "°  - " + fcstDay0.tmax.ToString() + "° F";//Temperature min et max 
+                        villeInfo.min_max = fcstDay0.tmin.ToString() + "°  à  " + fcstDay0.tmax.ToString() + "° F";//Temperature min et max 
 
                     }
                 }
