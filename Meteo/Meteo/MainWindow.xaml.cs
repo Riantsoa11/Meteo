@@ -17,6 +17,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.IO;
 using System.Diagnostics;
+using Meteo.Service;
 
 namespace Meteo
 {
@@ -807,6 +808,11 @@ namespace Meteo
     public partial class MainWindow : Window
     {
         string cheminFichier = "D:\\Tsiory\\Riantsoa11\\Meteo\\Meteo\\Meteo\\Ressources\\Fichiers\\listeActuelle.txt";
+        //string cheminFichier = @"Ressources/Fichiers\listeActuelle.txt";
+        //string cheminFichier = @"Meteo/Ressources/Fichiers\listeActuelle.txt";
+        //string cheminFichier = @"Ressources\Fichiersliste\Actuelle.txt";
+
+        Ville ville = new Ville();
 
         public MainWindow()
         {
@@ -819,7 +825,7 @@ namespace Meteo
             numeroComboBox.Items.Add("3");
             numeroComboBox.Items.Add("4");
 
-            RecupererVille();
+            ville.RecupererVille(cheminFichier,villeComboBox);
 
             //prend Annecy comme ville par Défaut 
         _: GetWeather("Annecy");
@@ -1000,8 +1006,8 @@ namespace Meteo
                 {
                     // Vérifiez si le nom de la ville commence par une majuscule
                     if (villesAutorisees.Contains(villeAAjouter))
-                    {
-                        AjouterVille(villeAAjouter);
+                    {                        
+                        ville.AjouterVille(villeAAjouter,cheminFichier);
                         // Ajoutez l'élément à la liste
                         villeComboBox.Items.Add(villeAAjouter);
                         MessageBox.Show("Ville ajoutée avec succès.");
@@ -1030,8 +1036,7 @@ namespace Meteo
             // Vérifiez si l'élément existe dans la liste du ComboBox
             if (villeComboBox.Items.Contains(elementASupprimer))
             {
-                SupprimerVille(elementASupprimer);
-
+                ville.SupprimerVille(elementASupprimer,cheminFichier);
                 // Supprimez l'élément
                 villeComboBox.Items.Remove(elementASupprimer);
                 MessageBox.Show("Élément supprimé avec succès.");
@@ -1041,73 +1046,8 @@ namespace Meteo
                 MessageBox.Show("L'élément n'existe pas dans la liste.");
             }
         }
-
-        private void SupprimerVille(string villeAsupprimer)
-        {
-
-            try
-            {
-                string contenu = File.ReadAllText(cheminFichier);
-                List<string> villesListe = contenu.Split(',').ToList();
-
-                villesListe.Remove(villeAsupprimer);
-
-                string nouveauContenu = string.Join(",", villesListe);
-
-                File.WriteAllText(cheminFichier, nouveauContenu);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
-            }
-        }
-
-        private void RecupererVille()
-        {
-
-
-            try
-            {
-                string contenu = File.ReadAllText(cheminFichier);
-
-                string[] villesArray = contenu.Split(',');
-
-                List<string> villesListe = new List<string>(villesArray);
-
-                foreach (string ville in villesListe)
-                {
-                    villeComboBox.Items.Add(ville);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
-            }
-        }
        
-            private void AjouterVille(string nouvelleVille)
-        {
-
-            try
-            {
-                string contenu = File.ReadAllText(cheminFichier);
-
-                List<string> villesListe = contenu.Split(',').ToList();
-
-                villesListe.Add(nouvelleVille);
-
-                string nouveauContenu = string.Join(",", villesListe);
-
-                File.WriteAllText(cheminFichier, nouveauContenu);
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
-            }
-
-        }
+            
     }
 
 }
