@@ -34,3 +34,5 @@ D:\Tsiory\Riantsoa11\Meteo\Meteo\Meteo\obj\Debug\Meteo.csproj.CoreCompileInputs.
 D:\Tsiory\Riantsoa11\Meteo\Meteo\Meteo\obj\Debug\Meteo.csproj.CopyComplete
 D:\Tsiory\Riantsoa11\Meteo\Meteo\Meteo\obj\Debug\Meteo.exe
 D:\Tsiory\Riantsoa11\Meteo\Meteo\Meteo\obj\Debug\Meteo.pdb
+D:\Tsiory\Riantsoa11\Meteo\Meteo\Meteo\bin\Debug\Ressources\Fichiers\listeActuelle.txt
+D:\Tsiory\Riantsoa11\Meteo\Meteo\Meteo\obj\Debug\Meteo_Content.g.cs

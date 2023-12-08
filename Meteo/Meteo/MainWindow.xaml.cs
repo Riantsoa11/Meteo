@@ -806,11 +806,8 @@ namespace Meteo
         public string icon { get; set; }
     }
     public partial class MainWindow : Window
-    {
-        string cheminFichier = "D:\\Tsiory\\Riantsoa11\\Meteo\\Meteo\\Meteo\\Ressources\\Fichiers\\listeActuelle.txt";
-        //string cheminFichier = @"Ressources/Fichiers\listeActuelle.txt";
-        //string cheminFichier = @"Meteo/Ressources/Fichiers\listeActuelle.txt";
-        //string cheminFichier = @"Ressources\Fichiersliste\Actuelle.txt";
+    { 
+        string cheminFichier = @"Ressources/Fichiers/listeActuelle.txt";
 
         Ville ville = new Ville();
 
@@ -841,6 +838,7 @@ namespace Meteo
             try
             {
                 //HttpResponseMessage va prendre les information de la lien
+                //await appeler la méthode GetAsync de l'objet HttpClient
                 HttpResponseMessage responce = await client.GetAsync("https://www.prevision-meteo.ch/services/json/" + ville);
                 if (responce.IsSuccessStatusCode)
                 {
